@@ -11,7 +11,25 @@ import SwiftUI
 struct FruitfullApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "tree")
+                        Text("Home")
+                    }
+                
+                HomeView()  // change this to logging view
+                    .tabItem {
+                        Image(systemName: "drop")
+                        Text("Logging")
+                    }
+                
+                HomeView() // change this to account view
+                    .tabItem {
+                        Image(systemName: "person.crop.circle")
+                        Text("Profile")
+                    }
+            }
         }
     }
 }

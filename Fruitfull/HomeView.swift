@@ -19,6 +19,8 @@ struct Category: Identifiable {
 
 struct HomeView: View {
     
+    @State private var showAlert = false
+    
     let categories = [
         Category(name: "Sleep", icon: "leaf.fill", color: .green, score: 4, goalTime: 24, loggedTime: 19.2),
         Category(name: "Movement", icon: "drop.fill", color: .blue, score: 3, goalTime: 24, loggedTime: 19.2),
@@ -67,7 +69,11 @@ struct HomeView: View {
                                 }
                                 .padding(2)
                                 
-                                Text("Hellooo")
+                                Text("Time logged: \(category.loggedTime.formatted(.number.precision(.fractionLength(1)))) hrs")
+                                    .font(.footnote)
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundStyle(.gray.opacity(0.6))
+                                
                                 
                             }
                             .padding()
@@ -78,13 +84,19 @@ struct HomeView: View {
                             
                             
 
-                            NavigationLink(destination: Text("Details for \(category.name)")) {
-                                Button{
-                                    Image(systemName: "info.circle")
-                                        .foregroundColor(.gray)
-                                        .padding(.bottom, 20)
-                                }
+                            Button {
+                                showAlert = true
+                            } label: {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 20)
                             }
+                            .alert("Details", isPresented: $showAlert) {
+                                Button("OK") { }
+                            } message: {
+                                Text("Details for \(category.name)")
+                            }
+                            
                             
                         }
                     }

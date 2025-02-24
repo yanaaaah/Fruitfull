@@ -13,18 +13,20 @@ struct Category: Identifiable {
     let icon: String
     let color: Color
     let score: Int
+    let goalTime: Double
+    let loggedTime: Double
 }
 
 struct HomeView: View {
     
     let categories = [
-        Category(name: "Sleep", icon: "leaf.fill", color: .green, score: 4),
-        Category(name: "Movement", icon: "drop.fill", color: .blue, score: 3),
-        Category(name: "Social", icon: "drop.fill", color: .yellow, score: 3),
-        Category(name: "Personal", icon: "drop.fill", color: .red, score: 3),
-        Category(name: "Downtime", icon: "drop.fill", color: .pink, score: 3),
-        Category(name: "Study", icon: "drop.fill", color: .purple, score: 3),
-        Category(name: "Work", icon: "drop.fill", color: .brown, score: 3)
+        Category(name: "Sleep", icon: "leaf.fill", color: .green, score: 4, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Movement", icon: "drop.fill", color: .blue, score: 3, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Social", icon: "drop.fill", color: .yellow, score: 3, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Personal", icon: "drop.fill", color: .red, score: 3, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Downtime", icon: "drop.fill", color: .pink, score: 3, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Study", icon: "drop.fill", color: .purple, score: 3, goalTime: 24, loggedTime: 19.2),
+        Category(name: "Work", icon: "drop.fill", color: .brown, score: 3, goalTime: 24, loggedTime: 19.2)
     ]
     
     var body: some View {
@@ -43,22 +45,30 @@ struct HomeView: View {
                     .padding()
                 
                 VStack {
+                    Text("Your Week's View")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
                     ForEach(categories) { category in
                         HStack {
                             VStack {
-                                HStack{
-                                    Text(category.name)
-                                        .font(.headline)
-                                        .frame(width: 200, alignment: .leading)
+                                HStack(spacing: 4) {
+                                    Text("\(category.name): \(category.goalTime.formatted(.number.precision(.fractionLength(1)))) hrs")                                        .font(.callout)
+                                        .frame(width: 240, alignment: .leading)
                                     
-                                    HStack {
+                                    HStack(spacing: 1) {
                                         ForEach(0..<5, id: \.self) { index in
-                                            Image(systemName: index < category.score ? "drop.fill" : "drop")
+                                            Image(systemName: "drop.fill")
+                                                .symbolVariant(index < category.score ? .fill : .none)
                                                 .foregroundColor(category.color)
+                                                .font(.system(size: 16))
                                         }
+                                    }
                                 }
-    
-                                }
+                                .padding(2)
+                                
+                                Text("Hellooo")
+                                
                             }
                             .padding()
                             .background(Color.white)
@@ -66,15 +76,21 @@ struct HomeView: View {
                             .shadow(radius: 1)
                             .padding(.bottom, 20)
                             
+                            
+
                             NavigationLink(destination: Text("Details for \(category.name)")) {
-                                Image(systemName: "info.circle")
-                                    .foregroundColor(.gray)
-                                    .padding(.bottom, 20)
+                                Button{
+                                    Image(systemName: "info.circle")
+                                        .foregroundColor(.gray)
+                                        .padding(.bottom, 20)
+                                }
                             }
+                            
                         }
                     }
                 }
                 .padding()
+                
             }
         }
         .padding()

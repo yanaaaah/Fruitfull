@@ -78,7 +78,7 @@ struct EditGoalsView: View {
                             }
                         }
                         .padding(20)
-                        .background(Color.black.opacity(0.25))
+                        .background(Color.gray.opacity(0.25))
                         .cornerRadius(30)
                     }
                     Text ("Total Time Commitment: \(String(format: "%.1f", Double(sleep+movement+social+personal+downtime+study+work)))")

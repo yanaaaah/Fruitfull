@@ -19,30 +19,30 @@ struct LoggingView: View {
     
     
     
-    @State private var showingAlertsleep: Bool = false
-    @State private var alertTitlesleep: String = "Sleep Information"
-    @State private var alertMessagesleep: String = "It is recommended to get 7-9 hours of sleep each night. add link"
-    @State private var alertButtonTextsleep: String = "Done"
-    
-    @State private var showingAlertmovement: Bool = false
-    @State private var alertTitlesmovement: String = "Movement Information"
-    @State private var alertMessagemovement: String = "It is recommended to get movement. add link"
-    @State private var alertButtonTextmovement: String = "Done"
-    
-    @State private var showingAlertsocial: Bool = false
-    @State private var alertTitlesocial: String = "Social Information"
-    @State private var alertMessagesocial: String = "This includes time spent with family and friends"
-    @State private var alertButtonTextsocial: String = "Done"
-    
-    @State private var showingAlertpersonal: Bool = false
-    @State private var alertTitlepersonal: String = "Personal Information"
-    @State private var alertMessagepersonal: String = "This includes...."
-    @State private var alertButtonTextpersonal: String = "Done"
-    
-    @State private var showingAlertdowntime: Bool = false
-    @State private var alertTitledowntime: String = "Downtime Information"
-    @State private var alertMessagedowntime: String = "This includes things like"
-    @State private var alertButtonTextdowntime: String = "Done"
+//    @State private var showingAlertsleep: Bool = false
+//    @State private var alertTitlesleep: String = "Sleep Information"
+//    @State private var alertMessagesleep: String = "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours."
+//    @State private var alertButtonTextsleep: String = "Done"
+//    
+//    @State private var showingAlertmovement: Bool = false
+//    @State private var alertTitlesmovement: String = "Movement Information"
+//    @State private var alertMessagemovement: String = "It is recommended to get movement. add link"
+//    @State private var alertButtonTextmovement: String = "Done"
+//    
+//    @State private var showingAlertsocial: Bool = false
+//    @State private var alertTitlesocial: String = "Social Information"
+//    @State private var alertMessagesocial: String = "This includes time spent with family and friends"
+//    @State private var alertButtonTextsocial: String = "Done"
+//    
+//    @State private var showingAlertpersonal: Bool = false
+//    @State private var alertTitlepersonal: String = "Personal Information"
+//    @State private var alertMessagepersonal: String = "This includes...."
+//    @State private var alertButtonTextpersonal: String = "Done"
+//    
+//    @State private var showingAlertdowntime: Bool = false
+//    @State private var alertTitledowntime: String = "Downtime Information"
+//    @State private var alertMessagedowntime: String = "This includes things like"
+//    @State private var alertButtonTextdowntime: String = "Done"
     
     
     @State private var showingAlerttoomuch: Bool = false
@@ -50,8 +50,6 @@ struct LoggingView: View {
     @State private var alertMessagetoomuch: String = "You've exceeded the total time amount per day"
     @State private var alertButtonTexttoomuch: String = "Done"
     @State private var total = 0.0
-    
-    
     
     
     var body: some View {
@@ -67,13 +65,14 @@ struct LoggingView: View {
                             .font(.title)
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                        EditGoalsBubbleSubView(title: "Sleep", value: $sleep, colour: .green, alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done" )
-                        EditGoalsBubbleSubView(title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubbleSubView(title: "Social", value: $social, colour: .yellow, alertTitle: "Social Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubbleSubView(title: "Personal", value: $personal, colour: .orange, alertTitle: "Personal Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubbleSubView(title: "Downtime", value: $downtime, colour: .pink, alertTitle: "Downtime Information", alertMessage: "add examples", alertButtonText: "done" )
+                        EditGoalsBubbleSubView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(symbol: "figure.walk", title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(symbol: "person.2", title: "Social", value: $social, colour: .yellow, alertTitle: "Social Information", alertMessage: "Regular social connection is important to combat loneliness and foster emtional wellbeing. This can incude seeing friends and family.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(symbol: "leaf", title: "Personal", value: $personal, colour: .orange, alertTitle: "Personal Information", alertMessage: "This includes time dedicated  to hobbies, running errands, attending appointments or engaging in activities that contribute to your personal wellbeing.", alertButtonText: "Done" )
+                        EditGoalsBubbleSubView(symbol: "clock", title: "Downtime", value: $downtime, colour: .pink, alertTitle: "Downtime Information", alertMessage: "This is time spent doing nothing in particular, like scrolling on your phone or simply lying in bed. Rest is essential, so don’t feel guilty as your mind and body need it.", alertButtonText: "Done" )
                         VStack{
                             HStack{
+                                Image(systemName: "book")
                                 Text("Study")
                                     .font(.title2)
                                 Spacer()
@@ -91,6 +90,7 @@ struct LoggingView: View {
                         
                         VStack{
                             HStack{
+                                Image(systemName: "briefcase")
                                 Text("Work")
                                     .font(.title2)
                                 Spacer()

@@ -35,6 +35,8 @@ struct HomeView: View {
         "Well done, your week has been fruitful!", "Mid", "End"
     ]
     
+//    let images: [String: Image] = [normalTree: Image("midTree"), fruitTree: Image("fruitTree"), deadTree: Image("deadTree") ]
+        
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
@@ -75,7 +77,7 @@ struct HomeView: View {
     
     private var mainContent: some View {
         VStack(spacing: 20) {
-            Image(.fruitTree)
+            Image(.image) //make this like a list idk what the word was.
                 .resizable()
                 .scaledToFit()
                 .padding(.vertical)
@@ -164,13 +166,9 @@ struct HomeView: View {
         }
     }
 }
-    struct ProfileView: View {
-        var body: some View {
-            Text("Profile Screen")
-        }
-    }
     
-    #Preview {
-        HomeView()
-    }
+    
+#Preview {
+    HomeView()
+}
 

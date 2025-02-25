@@ -77,7 +77,7 @@ struct HomeView: View {
     
     private var mainContent: some View {
         VStack(spacing: 20) {
-            Image(.image) //make this like a list idk what the word was.
+            Image(.fruitTree) //make this like a list idk what the word was.
                 .resizable()
                 .scaledToFit()
                 .padding(.vertical)

@@ -26,6 +26,7 @@ struct EditGoalsBubbleSubView: View {
                 Image(systemName: symbol)
                 Text(title)
                     .font(.title2)
+                    .fontWeight(.bold)
                 Spacer()
                 Button {
                     infoAlert = true

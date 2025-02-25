@@ -18,36 +18,9 @@ struct LoggingView: View {
     
     
     
-    
-//    @State private var showingAlertsleep: Bool = false
-//    @State private var alertTitlesleep: String = "Sleep Information"
-//    @State private var alertMessagesleep: String = "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours."
-//    @State private var alertButtonTextsleep: String = "Done"
-//    
-//    @State private var showingAlertmovement: Bool = false
-//    @State private var alertTitlesmovement: String = "Movement Information"
-//    @State private var alertMessagemovement: String = "It is recommended to get movement. add link"
-//    @State private var alertButtonTextmovement: String = "Done"
-//    
-//    @State private var showingAlertsocial: Bool = false
-//    @State private var alertTitlesocial: String = "Social Information"
-//    @State private var alertMessagesocial: String = "This includes time spent with family and friends"
-//    @State private var alertButtonTextsocial: String = "Done"
-//    
-//    @State private var showingAlertpersonal: Bool = false
-//    @State private var alertTitlepersonal: String = "Personal Information"
-//    @State private var alertMessagepersonal: String = "This includes...."
-//    @State private var alertButtonTextpersonal: String = "Done"
-//    
-//    @State private var showingAlertdowntime: Bool = false
-//    @State private var alertTitledowntime: String = "Downtime Information"
-//    @State private var alertMessagedowntime: String = "This includes things like"
-//    @State private var alertButtonTextdowntime: String = "Done"
-    
-    
     @State private var showingAlerttoomuch: Bool = false
     @State private var alertTitletoomuch: String = "Error"
-    @State private var alertMessagetoomuch: String = "You've exceeded the total time amount per day"
+    @State private var alertMessagetoomuch: String = "You've exceeded the total time amount per day."
     @State private var alertButtonTexttoomuch: String = "Done"
     @State private var total = 0.0
     
@@ -57,13 +30,13 @@ struct LoggingView: View {
         {
             Text("Today")
                 .font(.system(size:34, weight:.bold))
-                
+            
             NavigationStack {
                 ScrollView {
                     VStack {
                         Text("How did you water your tree today?")
                             .font(.title)
-                            .fontWeight(.bold)
+                        //.fontWeight(.bold)
                             .multilineTextAlignment(.center)
                         EditGoalsBubbleSubView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
                         EditGoalsBubbleSubView(symbol: "figure.walk", title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
@@ -75,6 +48,7 @@ struct LoggingView: View {
                                 Image(systemName: "book")
                                 Text("Study")
                                     .font(.title2)
+                                    .fontWeight(.bold)
                                 Spacer()
                                 
                             }
@@ -93,6 +67,7 @@ struct LoggingView: View {
                                 Image(systemName: "briefcase")
                                 Text("Work")
                                     .font(.title2)
+                                    .fontWeight(.bold)
                                 Spacer()
                             }
                             Slider(value: $work, in: 0...24, step:0.5)

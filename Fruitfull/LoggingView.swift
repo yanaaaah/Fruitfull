@@ -17,7 +17,6 @@ struct LoggingView: View {
     @State private var work = 0.0
     
     
-    
     @State private var showingAlerttoomuch: Bool = false
     @State private var alertTitletoomuch: String = "Error"
     @State private var alertMessagetoomuch: String = "You've exceeded the total time amount per day."
@@ -79,6 +78,8 @@ struct LoggingView: View {
                         .background(Color.black.opacity(0.25))
                         .cornerRadius(30)
                     }
+                    Text("Total Hours Logged: \(String(format: "%.1f", Double(sleep + study + movement + social + work + personal + downtime)))\n")
+                        .font(.title2)
                 }
                 .onChange(of: sleep + study + movement + social + work + personal + downtime, checkHoursNotExceeded)
                 .alert(Text(alertTitletoomuch), isPresented: $showingAlerttoomuch) {
@@ -91,7 +92,6 @@ struct LoggingView: View {
                 }
                 //.navigationBarTitle("Today", displayMode: .large)
                 //.navigationBarTitleDisplayMode(.centered)
-                
             }
             .padding(15)
         }

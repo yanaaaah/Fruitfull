@@ -26,31 +26,35 @@ struct EditGoalsView: View {
     var body: some View {
         VStack(spacing: 8)
         {
-            Text("Today")
+            Text("Edit Goals")
                 .font(.system(size:34, weight:.bold))
             
             NavigationStack {
                 ScrollView {
                     VStack {
-                        Text("How did you water your tree today?")
+                        Text("What time balance will make your tree fruitful?")
                             .font(.title)
-                            .fontWeight(.bold)
+                        
                             .multilineTextAlignment(.center)
-                        EditGoalsBubblesView(title: "Sleep", value: $sleep, colour: .green,  symbol: "briefcase.fill" , alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done" )
-                        EditGoalsBubblesView(title: "Movement", value: $movement, colour: .blue,  symbol: "briefcase.fill" , alertTitle: "Movement Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubblesView(title: "Social", value: $social, colour: .yellow, alertTitle: "Social Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubblesView(title: "Personal", value: $personal, colour: .orange,  symbol: "briefcase.fill" , alertTitle: "Personal Information", alertMessage: "add info", alertButtonText: "done" )
-                        EditGoalsBubblesView(title: "Downtime", value: $downtime, colour: .pink,  symbol: "briefcase.fill" , alertTitle: "Downtime Information", alertMessage: "add examples", alertButtonText: "done" )
+                        EditGoalsBubblesView(symbol: "bed.double.fill", title: " Sleep", value: $sleep, colour: .green, alertTitle: "Sleep", alertMessage: "Sleep is cruicial for enhacing overall well-being and cognitive function with most people needing 7-9 hours.", alertButtonText: "Done" )
+                        EditGoalsBubblesView(symbol: "figure.walk", title: "Movement", value: $movement, colour: .blue, alertTitle: "Movement Information", alertMessage: "Physical movement is important for overall health and well-being and recommended 30mins a day.", alertButtonText: "Done" )
+                        EditGoalsBubblesView(symbol: "person.2", title: "Social", value: $social, colour: .yellow, alertTitle: "Social Information", alertMessage: "Regular social connection is important to combat loneliness and foster emtional wellbeing. This can incude seeing friends and family.", alertButtonText: "Done" )
+                        EditGoalsBubblesView(symbol: "leaf", title: "Personal", value: $personal, colour: .orange, alertTitle: "Personal Information", alertMessage: "This includes time dedicated  to hobbies, running errands, attending appointments or engaging in activities that contribute to your personal wellbeing.", alertButtonText: "Done" )
+                        EditGoalsBubblesView(symbol: "clock", title: "Downtime", value: $downtime, colour: .pink, alertTitle: "Downtime Information", alertMessage: "This is time spent doing nothing in particular, like scrolling on your phone or simply lying in bed. Rest is essential, so don’t feel guilty as your mind and body need it.", alertButtonText: "Done" )
                         VStack{
                             HStack{
+                                Image(systemName: "book")
                                 Text("Study")
                                     .font(.title2)
+                                    .fontWeight(.bold)
                                 Spacer()
                                 
                             }
                             Slider(value: $study, in: 0...24, step:0.5)
                             HStack{
                                 Text("Hours per day: \(String(format: "%.1f", Double(study)))")
+                                Spacer()
+                                Text("Hours per week: \(String(format: "%.1f", Double(study)*7))")
                             }
                         }
                         .padding(20)
@@ -60,22 +64,33 @@ struct EditGoalsView: View {
                         
                         VStack{
                             HStack{
-                                Image(systemName: "briefcase.fill")
+                                Image(systemName: "briefcase")
                                 Text("Work")
                                     .font(.title2)
+                                    .fontWeight(.bold)
                                 Spacer()
                             }
                             Slider(value: $work, in: 0...24, step:0.5)
                             HStack{
                                 Text("Hours per day: \(String(format: "%.1f", Double(work)))")
+                                Spacer()
+                                Text("Hours per week: \(String(format: "%.1f", Double(work)*7))")
                             }
                         }
                         .padding(20)
                         .background(Color.black.opacity(0.25))
                         .cornerRadius(30)
                     }
+                    Text ("Total Time Commitment: \(String(format: "%.1f", Double(sleep+movement+social+personal+downtime+study+work)))")
+                        .font(.title2)
                 }
-                .onChange(of: sleep + study + movement + social + work + personal + downtime, checkHoursNotExceeded)
+                .onChange(of: sleep, checkHoursNotExceeded)
+                .onChange(of: movement, checkHoursNotExceeded)
+                .onChange(of: social, checkHoursNotExceeded)
+                .onChange(of: personal, checkHoursNotExceeded)
+                .onChange(of: downtime, checkHoursNotExceeded)
+                .onChange(of: study, checkHoursNotExceeded)
+                .onChange(of: work, checkHoursNotExceeded)
                 .alert(Text(alertTitletoomuch), isPresented: $showingAlerttoomuch) {
                     Button(alertButtonTexttoomuch) {
                         

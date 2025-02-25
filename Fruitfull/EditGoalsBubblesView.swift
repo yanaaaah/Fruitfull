@@ -10,10 +10,11 @@ import SwiftUI
 struct EditGoalsBubblesView: View {
     @State private var infoAlert = false
     
+    var symbol: String
     var title: String
     @Binding var value: Double
     var colour: Color
-    var symbol: String
+    
     
     @State var alertTitle = ""
     @State var alertMessage = ""
@@ -25,6 +26,7 @@ struct EditGoalsBubblesView: View {
                 Image(systemName: symbol)
                 Text(title)
                     .font(.title2)
+                    .fontWeight(.bold)
                 Spacer()
                 Button {
                     infoAlert = true
@@ -44,7 +46,7 @@ struct EditGoalsBubblesView: View {
             HStack{
                 Text("Hours per day: \(String(format: "%.1f", Double(value)))")
                 Spacer()
-                Text("Hours per week: \(String(format: "%.1f", Double(value)))")
+                Text("Hours per week: \(String(format: "%.1f", Double(value)*7))")
             }
             
         }
@@ -55,6 +57,6 @@ struct EditGoalsBubblesView: View {
 }
 
 #Preview {
-    EditGoalsBubblesView( title: "Sleep", value: .constant(0), colour: .blue, symbol: "briefcase.fill" , alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done")
+    EditGoalsBubblesView(symbol: "moon", title: "Sleep", value: .constant(0), colour: .blue, alertTitle: "sleep", alertMessage: "what are you doing", alertButtonText: "done")
 }
 
